@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@600;700&family=Lato:wght@400;700&family=Roboto:wght@400;500&family=Playfair+Display:ital,wght@1,700&family=Dancing+Script:wght@700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #0F3D5A;
+  --color-coral: #FF6F61;
+  --color-dark-gray: #333333;
+  
+  --font-display: "Montserrat", "Poppins", sans-serif;
+  --font-body: "Lato", "Roboto", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-handwritten: "Dancing Script", cursive;
+}
+
+@layer base {
+  body {
+    @apply font-body text-dark-gray bg-white;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+.scroll-mt-20 {
+  scroll-margin-top: 5rem;
+}
