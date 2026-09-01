@@ -12,18 +12,22 @@ import {
   Mail, 
   Linkedin, 
   ChevronRight, 
-  ExternalLink, 
   Download,
   Menu,
   X,
-  MapPin,
   Calendar,
   Award,
   Users,
-  MessageCircle
+  MessageCircle,
+  GraduationCap,
+  Layers,
+  Table,
+  Laptop
 } from 'lucide-react';
+import { Portfolio } from './components/Portfolio';
+const profilePhotoUrl = 'https://drive.google.com/thumbnail?id=1zGh02SiaQ_ceNbPL-bsitlIZFvjHo_Lo&sz=w2000';
 
-// --- Components ---
+// --- Navigation Component ---
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,30 +41,31 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '#home' },
-    { name: 'Mi historia', href: '#story' },
-    { name: 'Mi CV', href: '#cv' },
-    { name: 'Proyectos', href: '#portfolio' },
-    { name: 'Contacto', href: '#contact' },
+    { name: 'Experiencia profesional', href: '#experiencia' },
+    { name: 'Eventos destacados', href: '#eventos' },
+    { name: 'Formación y herramientas', href: '#formacion' },
+    { name: 'Sobre mí', href: '#sobre-mi' },
+    { name: 'Contacto', href: '#contacto' },
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-marfil/95 backdrop-blur-md shadow-sm border-b border-arena/60 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <a href="#home" className={`font-bold tracking-tighter flex items-center text-midnight`}>
+        <a href="#home" className="font-bold tracking-tighter flex items-center text-oliva">
           <span className="text-3xl md:text-4xl lg:text-5xl">BLAN</span>
-          <span className="mx-1 text-2xl md:text-3xl lg:text-4xl text-coral">·</span>
-          <span className="font-handwritten text-coral text-6xl md:text-7xl lg:text-8xl mx-1 transform -rotate-3 translate-y-1">CA</span>
-          <span className="mx-1 text-2xl md:text-3xl lg:text-4xl text-coral">·</span>
+          <span className="mx-1 text-2xl md:text-3xl lg:text-4xl text-dorado">·</span>
+          <span className="font-handwritten text-terracota text-6xl md:text-7xl lg:text-8xl mx-1 transform -rotate-3 translate-y-1">CA</span>
+          <span className="mx-1 text-2xl md:text-3xl lg:text-4xl text-dorado">·</span>
           <span className="text-3xl md:text-4xl lg:text-5xl">STRO</span>
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden lg:flex space-x-6 xl:space-x-8">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="font-medium hover:text-coral transition-colors text-midnight"
+              className="text-sm xl:text-base font-medium hover:text-terracota transition-colors text-carbon/90 whitespace-nowrap"
             >
               {link.name}
             </a>
@@ -68,7 +73,11 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-midnight" onClick={() => setIsOpen(!isOpen)}>
+        <button 
+          aria-label="Abrir menú"
+          className="lg:hidden text-oliva p-2 rounded-lg hover:bg-arena/50 transition-colors" 
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -80,13 +89,13 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-white shadow-xl py-6 flex flex-col items-center space-y-4 md:hidden"
+            className="absolute top-full left-0 w-full bg-marfil shadow-xl py-6 flex flex-col items-center space-y-4 lg:hidden border-b border-arena"
           >
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href}
-                className="text-lg font-medium text-midnight hover:text-coral"
+                className="text-lg font-medium text-carbon hover:text-terracota transition-colors py-1"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -99,41 +108,47 @@ const Navbar = () => {
   );
 };
 
+// --- Hero Component ---
+
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
-      {/* Background Decoration */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-midnight/5 -skew-x-12 translate-x-1/4 z-0" />
+    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-marfil scroll-mt-20">
+      {/* Background Soft Decoration */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-arena/40 -skew-x-12 translate-x-1/4 z-0 pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10 py-12 md:py-0">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-midnight leading-tight mb-6">
+          <p className="text-xs sm:text-sm font-bold text-terracota uppercase tracking-[0.18em] mb-3">
+            ORGANIZACIÓN Y COORDINACIÓN DE EVENTOS
+          </p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-oliva leading-tight mb-4">
             Transformando<br />
             <span className="whitespace-nowrap">ideas en experiencias</span><br />
-            <span className="text-midnight text-4xl md:text-5xl lg:text-6xl block mt-2">memorables</span>
+            <span className="text-oliva text-4xl md:text-5xl lg:text-6xl block mt-2">memorables</span>
           </h1>
-          <p className="text-xl md:text-2xl italic text-midnight mb-8 max-w-lg">
-            Estrategia, creatividad y ejecución para experiencias que conectan y perduran.
+          <div className="w-24 h-1 bg-dorado rounded-full mb-6" />
+          <p className="text-lg md:text-xl text-carbon/85 mb-8 max-w-lg leading-relaxed">
+            Visión de conjunto, atención al detalle y capacidad de respuesta para que cada pieza encaje.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#story" className="bg-coral text-white px-8 py-4 rounded-full font-bold hover:bg-coral/90 transition-all shadow-lg hover:shadow-coral/20">
-              Mi historia
+            <a 
+              href="#experiencia" 
+              className="bg-terracota text-white px-8 py-4 rounded-full font-bold hover:bg-bosque transition-all shadow-lg hover:shadow-terracota/25"
+            >
+              Experiencia en eventos
             </a>
-            <a href="#portfolio" className="border-2 border-midnight text-midnight px-8 py-4 rounded-full font-bold hover:bg-midnight hover:text-white transition-all">
-              Proyectos
+            <a 
+              href="https://drive.google.com/uc?export=download&id=1-9epS3S7wwWcBIi_4ur-PB1U9dnMcvNU" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-oliva text-oliva px-8 py-4 rounded-full font-bold hover:bg-oliva hover:text-white transition-all flex items-center gap-2 group"
+            >
+              <Download size={18} className="text-dorado group-hover:text-white transition-colors" /> Ver CV
             </a>
-          </div>
-          <div className="mt-8 flex gap-4">
-             <a href="#cv" className="text-midnight font-semibold flex items-center gap-2 hover:text-coral transition-colors">
-               Mi CV <ChevronRight size={18} />
-             </a>
-             <a href="#contact" className="text-midnight font-semibold flex items-center gap-2 hover:text-coral transition-colors">
-               Contacto <ChevronRight size={18} />
-             </a>
           </div>
         </motion.div>
 
@@ -144,20 +159,17 @@ const Hero = () => {
           className="relative flex justify-center lg:justify-end"
         >
           <motion.div 
-            whileHover={{ scale: 1.15 }}
+            whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="relative p-3 rounded-[2.5rem] bg-white shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-midnight/5 w-full max-w-[620px]"
+            className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] aspect-square flex items-center justify-center"
           >
-            <img 
-              src="https://drive.google.com/thumbnail?id=1rZqfuM5jP4raJVH8aWe736zrJeXJ4aY_&sz=w2000" 
-              alt="Blanca Castro" 
-              className="w-full h-auto rounded-[2rem] block"
-              referrerPolicy="no-referrer"
-            />
-            
-            {/* Floating Badge - smaller and moved down */}
-            <div className="absolute -bottom-10 -left-4 bg-coral text-white px-4 py-2 rounded-xl shadow-2xl z-10 hidden md:block">
-              <p className="text-sm font-medium italic">Construyendo proyectos con sentido</p>
+            <div className="w-full h-full rounded-full overflow-hidden shadow-xl">
+              <img 
+                src={profilePhotoUrl} 
+                alt="Blanca Castro" 
+                className="w-full h-full object-cover object-center block"
+                referrerPolicy="no-referrer"
+              />
             </div>
           </motion.div>
         </motion.div>
@@ -166,153 +178,365 @@ const Hero = () => {
   );
 };
 
-const Story = () => {
-  const [selectedImg, setSelectedImg] = useState<number | null>(null);
-  const africaPhotos = [
-    { id: 1, url: 'https://drive.google.com/thumbnail?id=1LUAlLM-kIoWyZfyvPYFAeR5Jip0EsCE3&sz=w2000', title: 'Comunidad' },
-    { id: 2, url: 'https://drive.google.com/thumbnail?id=1Wldo4xGG2Tx1zhiEhbfqQRzJDjm-X07k&sz=w2000', title: 'Trabajo en equipo' },
-    { id: 3, url: 'https://drive.google.com/thumbnail?id=1JitFimCncA4znb-fvCXbva08mPilAWl8&sz=w2000', title: 'Resiliencia' },
-    { id: 4, url: 'https://drive.google.com/thumbnail?id=1c-dK3TN7aSjLIQJcrF_srHLsmx1poQji&sz=w2000', title: 'Impacto' },
-  ];
+// --- Section 1: Experiencia Profesional ---
 
+const Experience = () => {
   return (
-    <section id="story" className="py-24 bg-white scroll-mt-20">
+    <section id="experiencia" className="py-24 bg-arena/35 scroll-mt-20 border-y border-arena/50">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+        {/* Encabezado sin línea decorativa con separación limpia */}
+        <div className="text-center mb-12 sm:mb-14">
+          <h2 className="text-4xl font-bold text-oliva">Experiencia Profesional</h2>
+        </div>
+
+        <div className="max-w-4xl mx-auto">
+          
+          {/* 1. Viajes Triana: Experiencia actual protagonista (Cabecera independiente con elegante doble marco) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="mb-8 sm:mb-10"
           >
-            <h2 className="text-3xl font-bold mb-6 leading-tight">
-              <span className="text-midnight block">Inquieta desde siempre.</span>
-              <span className="text-coral block">Imparable cuando creo en algo.</span>
-            </h2>
-            <div className="space-y-6 text-base text-dark-gray leading-relaxed">
-              <p className="font-bold text-midnight text-xl italic">
-                ¿Qué destacaría de mi vida?
-              </p>
-              <p>
-                Sin duda, mi cambio profesional: de la docencia a la organización de eventos. 
-                Una transición impulsada por la pasión de crear momentos que perduren.
-              </p>
-              <p className="bg-midnight/5 p-6 rounded-2xl border-l-4 border-coral italic">
-                “Si hay algo que considero mi mayor regalo, ha sido <span className="font-bold">cumplir uno de mis sueños</span> desde pequeña: vivir la experiencia como voluntaria en <span className="font-bold">África</span>, concretamente en el poblado de <span className="font-bold">Benga, Malawi</span>. Lo que empezó como un viaje sin billete de vuelta se convirtió en seis meses viviendo en una de las tierras más auténticas que he conocido. Sumergirme en su cultura y colaborar en distintos proyectos me confirmó mi <span className="font-bold">resiliencia</span>, que <span className="font-bold">el trabajo en equipo multiplica objetivos</span> y la importancia de convertir ideas en acciones que realmente generan un <span className="font-bold">impacto</span>.”
-              </p>
-              <div className="flex gap-6 pt-4">
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-midnight/10 rounded-full flex items-center justify-center text-midnight mb-2">
-                    <Globe size={24} />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-tighter">Mundo</span>
+            {/* Marco exterior en verde corporativo con separación visible de 6px */}
+            <div className="rounded-3xl p-[5px] sm:p-[6px] bg-white border border-terracota/50 shadow-sm">
+              {/* Marco interior en amarillo mostaza */}
+              <div className="rounded-[1.35rem] p-6 sm:p-8 bg-[#FCFDFB] border border-dorado/90">
+                
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                  <span className="text-xs sm:text-sm font-bold text-terracota uppercase tracking-wider">
+                    DESDE MAYO DE 2026
+                  </span>
+                  <span className="border border-dorado/90 bg-arena/20 text-oliva text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-0.5 rounded-full shadow-xs">
+                    ACTUALIDAD
+                  </span>
                 </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-midnight/10 rounded-full flex items-center justify-center text-midnight mb-2">
-                    <Sparkles size={24} />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-tighter">Magia</span>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-oliva">
+                  Viajes Triana
+                </h3>
+                <p className="text-sm sm:text-base font-semibold text-terracota mb-4">
+                  Delegada Comercial BTC · Área Triana Corporate
+                </p>
+
+                {/* Línea divisoria horizontal fina */}
+                <div className="pt-4 border-t border-arena/70">
+                  <ul className="grid md:grid-cols-2 gap-x-8 gap-y-2.5">
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Desarrollo y puesta en marcha de la nueva área comercial BTC.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Prospección y captación de nuevas cuentas corporativas.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Mantenimiento, seguimiento y fidelización de la cartera de clientes.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Detección de necesidades y elaboración de propuestas comerciales adaptadas.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Desarrollo, creación e implementación del CRM para la organización y el seguimiento de la actividad comercial.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Coordinación con el equipo técnico para garantizar una atención adecuada y un servicio alineado con las necesidades de cada cliente.</span>
+                    </li>
+                  </ul>
                 </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-midnight/10 rounded-full flex items-center justify-center text-midnight mb-2">
-                    <Lightbulb size={24} />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-tighter">Ideas</span>
-                </div>
+
               </div>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-2 gap-4">
-            {africaPhotos.map((photo, idx) => (
-              <motion.div
-                key={photo.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="relative group cursor-pointer overflow-hidden rounded-xl aspect-[4/3]"
-                onClick={() => setSelectedImg(idx)}
-              >
-                <img 
-                  src={photo.url} 
-                  alt={photo.title} 
-                  className={`w-full h-full object-cover transition-transform duration-500 ${
-                    idx === 1 ? 'scale-[1.15] group-hover:scale-[1.35]' : 'group-hover:scale-125'
-                  } ${
-                    idx === 0 ? 'object-[center_15%]' : idx === 1 ? 'object-[10%_center]' : idx === 3 ? 'object-[center_55%]' : 'object-center'
-                  }`}
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-            ))}
+          {/* Línea temporal vertical que arranca debajo de Triana Corporate */}
+          <div className="relative pl-6 sm:pl-9 space-y-6 sm:space-y-7 before:absolute before:left-2 sm:before:left-3 before:top-6 before:bottom-6 before:w-[2px] before:bg-arena/80">
+            
+            {/* 2. RRA Consultoría */}
+            <motion.div 
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              {/* Marcador fino en la línea temporal */}
+              <div className="absolute -left-[1.45rem] sm:-left-[1.95rem] top-6 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white border-2 border-terracota shadow-xs z-10" />
+
+              <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-arena">
+                <span className="text-xs sm:text-sm font-bold text-terracota uppercase tracking-wider block mb-1">
+                  DICIEMBRE 2024 – MAYO 2026
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-oliva">
+                  RRA Consultoría
+                </h3>
+                <p className="text-xs sm:text-sm font-semibold text-carbon/75 mb-4">
+                  Gestión de proyectos, comunicación y eventos
+                </p>
+
+                {/* Línea divisoria fina y funciones en dos columnas en escritorio */}
+                <div className="pt-4 border-t border-arena/70">
+                  <div className="grid md:grid-cols-2 gap-x-8 gap-y-2.5">
+                    {/* Columna Izquierda: Eventos, ferias, proveedores y materiales */}
+                    <ul className="space-y-2.5">
+                      <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                        <span className="text-terracota shrink-0 mt-1">•</span>
+                        <span>Coordinación y coorganización de eventos e iniciativas del tercer sector, desde la planificación hasta la ejecución.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                        <span className="text-terracota shrink-0 mt-1">•</span>
+                        <span>Asistencia a ferias y eventos sectoriales, supervisando las necesidades de los socios participantes y ejerciendo representación institucional.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                        <span className="text-terracota shrink-0 mt-1">•</span>
+                        <span>Gestión y coordinación de proveedores, clientes y colaboradores.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                        <span className="text-terracota shrink-0 mt-1">•</span>
+                        <span>Producción y supervisión de materiales para proyectos y eventos.</span>
+                      </li>
+                    </ul>
+
+                    {/* Columna Derecha: Comunicación, CRM, captación, atención e incidencias */}
+                    <ul className="space-y-2.5">
+                      <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                        <span className="text-terracota shrink-0 mt-1">•</span>
+                        <span>Gestión del área de comunicación: diseño y ejecución del plan de comunicaciones, incluyendo newsletters, contenidos digitales, redes sociales y materiales corporativos.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                        <span className="text-terracota shrink-0 mt-1">•</span>
+                        <span>Desarrollo e implementación del CRM y de automatizaciones, impulsando la digitalización interna y la optimización de procesos.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5 text-xs sm:text-[0.88rem] text-carbon/85 leading-relaxed">
+                        <span className="text-terracota shrink-0 mt-1">•</span>
+                        <span>Seguimiento de la captación y fidelización de socios, atención directa y resolución de incidencias.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 3. Centro Infantil Patín Castilleja */}
+            <motion.div 
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -left-[1.45rem] sm:-left-[1.95rem] top-6 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white border-2 border-terracota shadow-xs z-10" />
+
+              <div className="bg-white p-6 sm:p-7 rounded-3xl shadow-sm border border-arena">
+                <span className="text-xs sm:text-sm font-bold text-terracota uppercase tracking-wider block mb-1">
+                  AGOSTO 2023 – AGOSTO 2024
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-oliva">
+                  Centro Infantil Patín Castilleja
+                </h3>
+                <p className="text-xs sm:text-sm font-semibold text-carbon/75 mb-4">
+                  Directora pedagógica
+                </p>
+
+                <div className="pt-3.5 border-t border-arena/70">
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Dirección y organización operativa del centro.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Planificación de actividades, horarios y recursos.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Coordinación con familias, proveedores e instituciones.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Resolución de incidencias y optimización de procesos internos.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 4. Trayectoria educativa agrupada (Centro Infantil La Estrella + Diversos centros educativos) */}
+            <motion.div 
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -left-[1.45rem] sm:-left-[1.95rem] top-6 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white border-2 border-terracota shadow-xs z-10" />
+
+              <div className="bg-white p-6 sm:p-7 rounded-3xl shadow-sm border border-arena">
+                <div className="flex items-center gap-2 mb-4">
+                  <GraduationCap className="text-terracota" size={20} />
+                  <h3 className="text-sm sm:text-base font-bold text-oliva uppercase tracking-wider">
+                    Trayectoria educativa
+                  </h3>
+                </div>
+
+                {/* Primera etapa: Centro Infantil La Estrella */}
+                <div className="pt-3 border-t border-arena/70">
+                  <span className="text-xs sm:text-sm font-bold text-terracota uppercase tracking-wider block mb-1">
+                    MARZO 2022 – AGOSTO 2023
+                  </span>
+                  <h4 className="text-base sm:text-lg font-bold text-oliva">
+                    Centro Infantil La Estrella
+                  </h4>
+                  <p className="text-xs sm:text-sm font-semibold text-carbon/75 mb-3">
+                    Coordinadora de centro y tutora de aula
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Organización de actividades y seguimiento de la operativa diaria.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Coordinación y comunicación con familias.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Supervisión de tareas y acompañamiento educativo.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Línea horizontal divisoria entre etapas */}
+                <div className="my-5 border-t border-arena/70" />
+
+                {/* Segunda etapa: Diversos centros educativos */}
+                <div>
+                  <span className="text-xs sm:text-sm font-bold text-terracota uppercase tracking-wider block mb-1">
+                    ABRIL 2018 – MARZO 2022
+                  </span>
+                  <h4 className="text-base sm:text-lg font-bold text-oliva">
+                    Diversos centros educativos
+                  </h4>
+                  <p className="text-xs sm:text-sm font-semibold text-carbon/75 mb-3">
+                    Maestra y tutora de Educación Infantil
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Planificación y organización de actividades educativas.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Seguimiento de la evolución del alumnado.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-terracota shrink-0 mt-1">•</span>
+                      <span>Colaboración con equipos multidisciplinares y familias.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 5. Experiencias complementarias */}
+            <motion.div 
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              {/* Marcador con sutil detalle en mostaza */}
+              <div className="absolute -left-[1.45rem] sm:-left-[1.95rem] top-6 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white border-2 border-dorado shadow-xs z-10 flex items-center justify-center">
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-dorado" />
+              </div>
+
+              <div className="bg-white p-6 sm:p-7 rounded-3xl shadow-sm border border-arena">
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles className="text-dorado" size={18} />
+                  <h3 className="text-xs sm:text-sm font-bold text-oliva uppercase tracking-wider">
+                    EXPERIENCIAS COMPLEMENTARIAS · 2011–2022
+                  </h3>
+                </div>
+
+                <div className="pt-3 border-t border-arena/70">
+                  <ul className="space-y-2.5">
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-dorado shrink-0 mt-1">•</span>
+                      <span>Soporte logístico y atención a asistentes como azafata en eventos.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-dorado shrink-0 mt-1">•</span>
+                      <span>Experiencia en hostelería, reforzando la organización, la atención al cliente y el trabajo en entornos dinámicos.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs sm:text-[0.85rem] text-carbon/85 leading-relaxed">
+                      <span className="text-dorado shrink-0 mt-1">•</span>
+                      <span>Apoyo administrativo en un bufete jurídico: gestión documental, facturación y atención al cliente.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </div>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selectedImg !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-midnight/95 flex items-center justify-center p-6"
-            onClick={() => setSelectedImg(null)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              className="max-w-4xl w-full relative"
-              onClick={e => e.stopPropagation()}
-            >
-              <button 
-                className="absolute -top-12 right-0 text-white hover:text-coral transition-colors"
-                onClick={() => setSelectedImg(null)}
-              >
-                <X size={32} />
-              </button>
-              <img 
-                src={africaPhotos[selectedImg].url} 
-                alt="Africa" 
-                className="w-full rounded-2xl shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-              <p className="text-white text-center mt-4 text-xl font-bold">{africaPhotos[selectedImg].title}</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
 
-const CV = () => {
+// --- Section 3: Formación y Herramientas ---
+
+const EducationAndSkills = () => {
   const skills = [
+    'Organización',
     'Capacidad de resolución',
+    'Proactividad',
     'Comunicación asertiva',
     'Creatividad',
     'Responsabilidad',
-    'Organización',
-    'Proactividad',
+  ];
+
+  const digitalTools = [
+    {
+      name: 'IA generativa',
+      description: 'Aplicación práctica en planificación, creación de contenidos y optimización de tareas.',
+      icon: Sparkles,
+    },
+    {
+      name: 'Microsoft 365',
+      description: 'Manejo habitual de herramientas de trabajo y gestión documental.',
+      icon: Layers,
+    },
+    {
+      name: 'Airtable',
+      description: 'Organización, seguimiento y gestión de información.',
+      icon: Table,
+    },
   ];
 
   return (
-    <section id="cv" className="py-24 bg-midnight/5 scroll-mt-20">
+    <section id="formacion" className="py-24 bg-arena/35 scroll-mt-20 border-y border-arena/50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-midnight mb-4">Trayectoria & Competencias</h2>
-          <div className="w-20 h-1 bg-coral mx-auto rounded-full" />
+          <h2 className="text-4xl font-bold text-oliva mb-4">Formación y Herramientas</h2>
+          <div className="w-20 h-1 bg-terracota mx-auto rounded-full" />
         </div>
 
         <div className="space-y-16">
-          {/* 1. Formación Académica */}
+          {/* 1. Formación Académica (MOCE con fondo verde oscuro exclusivo) */}
           <div>
-            <h3 className="text-2xl font-bold text-midnight mb-8 flex items-center gap-3 justify-center">
-              <Award className="text-coral" /> Formación Académica
+            <h3 className="text-2xl font-bold text-oliva mb-8 flex items-center gap-3 justify-center">
+              <GraduationCap className="text-terracota" /> Formación Académica
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { title: 'Máster en Organización de Congresos y Eventos (MOCE)', school: 'Cámara de Comercio de Sevilla', status: 'En curso', highlight: true },
+                { 
+                  title: 'Máster en Organización de Congresos y Eventos (MOCE)', 
+                  school: 'Escuela de Negocios de la Cámara de Comercio de Sevilla', 
+                  status: 'Finalizado · Mayo 2026', 
+                  highlight: true 
+                },
                 { title: 'Máster en Tecnología Educativa y Competencias Digitales', school: 'UNIR', status: null },
                 { title: 'Experto en E-Learning y Gamificación', school: 'UNIR', status: null },
                 { title: 'Graduada en Educación Infantil', school: 'Universidad San Pablo CEU', status: null },
@@ -323,614 +547,366 @@ const CV = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className={`p-6 rounded-2xl shadow-sm border ${edu.highlight ? 'bg-midnight text-white border-coral ring-2 ring-coral/20' : 'bg-white border-midnight/5 text-midnight'}`}
+                  className={`p-6 rounded-2xl shadow-sm border flex flex-col justify-between ${edu.highlight ? 'bg-oliva text-marfil border-terracota ring-2 ring-terracota/30' : 'bg-white border-arena text-oliva'}`}
                 >
-                  <h4 className={`font-bold text-base mb-2 ${edu.highlight ? 'text-coral' : 'text-midnight'}`}>{edu.title}</h4>
-                  <p className={`text-xs mb-4 ${edu.highlight ? 'text-white/70' : 'text-dark-gray/60'}`}>{edu.school}</p>
+                  <div>
+                    <h4 className={`font-bold text-base mb-2 ${edu.highlight ? 'text-dorado' : 'text-oliva'}`}>{edu.title}</h4>
+                    <p className={`text-xs sm:text-[0.82rem] leading-relaxed ${edu.highlight ? 'text-marfil/95 mb-3 font-medium' : 'text-carbon/75'}`}>{edu.school}</p>
+                  </div>
                   {edu.status && (
-                    <span className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${edu.highlight ? 'bg-coral text-white' : 'bg-midnight/5 text-midnight'}`}>
+                    <p className={`text-xs mt-2 ${edu.highlight ? 'text-marfil/75' : 'text-carbon/60'}`}>
                       {edu.status}
-                    </span>
+                    </p>
                   )}
                 </motion.div>
               ))}
             </div>
+          </div>
+
+          {/* 2. Bloque inferior: Competencias Clave (Izquierda) + Herramientas e Idiomas (Derecha) */}
+          <div className="grid lg:grid-cols-12 gap-6 items-stretch">
             
-          </div>
-
-          {/* 2. Competencias */}
-          <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-midnight/5">
-            <h3 className="text-2xl font-bold text-midnight mb-8 text-center">Competencias Clave</h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {skills.map((skill, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
-                  whileHover={{ scale: 1.05, backgroundColor: '#FF6F61', color: '#fff' }}
-                  className="px-6 py-3 bg-midnight/5 text-midnight rounded-full font-bold text-xs transition-all cursor-default border border-midnight/10"
-                >
-                  {skill}
-                </motion.div>
-              ))}
-            </div>
-            <p className="mt-10 text-center text-base italic text-dark-gray/70 max-w-2xl mx-auto">
-              "Poseo gran capacidad de superación y de enfrentarme a nuevos retos, ya que ha sido una constante en las distintas experiencias de mi vida."
-            </p>
-          </div>
-
-          {/* 3. Experiencia Profesional */}
-          <div className="grid lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2 space-y-12">
+            {/* Columna Izquierda: Competencias Clave */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-6 bg-white p-7 sm:p-8 rounded-3xl shadow-sm border border-arena flex flex-col justify-between"
+            >
               <div>
-                <h3 className="text-2xl font-bold text-midnight mb-8 flex items-center gap-3">
-                  <Calendar className="text-coral" /> Experiencia Profesional
+                <h3 className="text-xl font-bold text-oliva mb-2 flex items-center gap-3">
+                  <Award className="text-terracota" size={24} /> Competencias Clave
                 </h3>
-                <div className="space-y-10 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-0.5 before:bg-midnight/10">
-                  {[
-                    {
-                      company: 'RRA Consultoría',
-                      role: 'Gestión integral de proyectos, comunicación y eventos',
-                      period: 'Diciembre 2024 – Actualidad',
-                      tasks: [
-                        'Coordinación y coorganización de eventos e iniciativas del tercer sector, desde la planificación hasta la ejecución.',
-                        'Asistencia a ferias y eventos sectoriales, supervisando necesidades de socios participantes y ejerciendo representación institucional.',
-                        'Producción y supervisión de materiales para proyectos y eventos.',
-                        'Gestión y coordinación de proveedores, clientes y colaboradores.',
-                        'Responsable del área de comunicación: diseño y ejecución del plan de comunicaciones (newsletters, contenidos digitales, redes sociales y materiales corporativos).',
-                        'Desarrollo e implementación de CRM y automatizaciones, liderando la digitalización interna y la optimización de procesos.',
-                        'Seguimiento de captación y fidelización de socios.',
-                        'Atención directa al socio y resolución de incidencias.',
-                        'Gestión administrativa vinculada a proyectos: facturación y control documental.'
-                      ]
-                    },
-                    {
-                      company: 'Centro Infantil Patín Castilleja',
-                      role: 'Directora Pedagógica',
-                      period: 'Agosto 2023 – Agosto 2024',
-                      tasks: [
-                        'Dirección y coordinación del equipo educativo y personal del centro, organizando funciones, horarios y planificación anual.',
-                        'Planificación y supervisión de actividades, jornadas y eventos internos, asegurando correcta ejecución logística.',
-                        'Gestión integral del centro: organización operativa diaria, coordinación de recursos y resolución de incidencias.',
-                        'Interlocución con familias, proveedores e instituciones, garantizando una comunicación fluida y efectiva.',
-                        'Implementación de mejoras organizativas y optimización de procesos internos.',
-                        'Gestión administrativa y documental del centro.'
-                      ]
-                    },
-                    {
-                      company: 'Centro Infantil La Estrella',
-                      role: 'Coordinadora de centro y tutora de aula',
-                      period: 'Marzo 2022 – Agosto 2023',
-                      tasks: [
-                        'Organización y coordinación de actividades, eventos y dinámicas del centro.',
-                        'Apoyo en la planificación operativa y supervisión de tareas diarias.',
-                        'Comunicación y seguimiento con familias.',
-                        'Tutora de aula: seguimiento del aprendizaje y evolución.'
-                      ]
-                    },
-                    {
-                      company: 'Diversos centros educativos',
-                      role: 'Maestra y tutora en Educación Infantil (en sustitución)',
-                      period: 'Abril 2018 – Marzo 2022',
-                      tasks: [
-                        'Planificación y organización de actividades educativas en distintos entornos.',
-                        'Tutora de aula: seguimiento del aprendizaje y evolución de los estudiantes.',
-                        'Colaboración en el trabajo con compañeros y equipos multidisciplinares.'
-                      ]
-                    }
-                  ].map((exp, idx) => (
-                    <motion.div 
+                <p className="text-xs sm:text-sm text-carbon/75 mb-5">
+                  Cualidades y habilidades personales aplicadas a la gestión eficaz de proyectos y eventos.
+                </p>
+                <div className="flex flex-wrap gap-2.5">
+                  {skills.map((skill, idx) => (
+                    <motion.div
                       key={idx}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      className="pl-10 relative"
+                      transition={{ delay: idx * 0.04 }}
+                      whileHover={{ scale: 1.04, backgroundColor: '#2D6A4F', color: '#fff' }}
+                      className="px-4 py-2 bg-arena/40 text-carbon rounded-full font-semibold text-xs transition-all cursor-default border border-arena/70 hover:border-terracota"
                     >
-                      <div className="absolute left-0 top-1.5 w-6 h-6 bg-white border-4 border-coral rounded-full z-10" />
-                      <span className="text-sm font-bold text-coral uppercase tracking-wider">{exp.period}</span>
-                      <h4 className="text-lg font-bold text-midnight mt-1">{exp.company}</h4>
-                      <p className="text-sm font-semibold text-midnight/70 mb-3">{exp.role}</p>
-                      <ul className="space-y-2">
-                        {exp.tasks.map((task, tIdx) => (
-                          <li key={tIdx} className="text-dark-gray/80 text-xs flex gap-2">
-                            <span className="text-coral">•</span> {task}
-                          </li>
-                        ))}
-                      </ul>
+                      {skill}
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* Experiencia Adicional */}
-              <motion.div 
+              <div className="mt-6 pt-5 border-t border-arena/70">
+                <div className="flex items-start gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-dorado shrink-0 mt-1.5" />
+                  <p className="text-xs sm:text-sm text-carbon/85 leading-relaxed font-medium">
+                    “Me adapto rápido, busco soluciones y afronto los retos con iniciativa y determinación.”
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Columna Derecha: Herramientas Digitales (Arriba) + Idiomas (Abajo) */}
+            <div className="lg:col-span-6 flex flex-col gap-4">
+              
+              {/* Tarjeta 1: Herramientas Digitales (Mayor relevancia) */}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-3xl shadow-sm border border-midnight/5"
+                transition={{ delay: 0.1 }}
+                className="bg-white p-6 sm:p-7 rounded-3xl shadow-sm border border-arena flex-1"
               >
-                <h3 className="text-xl font-bold text-midnight mb-4 flex items-center gap-3">
-                  <Sparkles className="text-coral" size={20} /> Experiencia adicional
-                </h3>
-                <div className="space-y-4 text-dark-gray/80 text-sm leading-relaxed">
-                  <p>
-                    <span className="font-bold text-midnight">Marzo 2022 – Septiembre 2011</span>
-                  </p>
-                  <ul className="list-disc pl-5 space-y-2">
-                    <li>Soporte logístico y atención a asistentes en eventos (azafata), colaborando en control de accesos, acompañamiento y coordinación operativa.</li>
-                    <li>Experiencia en hostelería, reforzando capacidad de organización, gestión del ritmo de trabajo y atención al cliente.</li>
-                    <li>Apoyo administrativo en bufete jurídico: gestión documental, facturación y atención al cliente.</li>
-                  </ul>
-                </div>
-              </motion.div>
-            </div>
-
-            <div className="space-y-8">
-              <div className="bg-midnight text-white p-8 rounded-3xl shadow-xl">
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
-                  <Globe size={24} className="text-coral" /> Idiomas
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-bold">Inglés</span>
-                    <span className="bg-coral px-3 py-1 rounded-full text-xs font-bold">B2 - Trinity College</span>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-9 h-9 rounded-xl bg-arena/40 flex items-center justify-center text-terracota border border-arena">
+                    <Laptop size={20} />
                   </div>
-                  <p className="text-xs text-white/70">Abril 2018. Certificación oficial.</p>
-                  <div className="pt-4 border-t border-white/10">
-                    <p className="text-sm font-bold mb-1">Experiencia Internacional</p>
-                    <p className="text-xs text-white/70">Aupair en Galway (Irlanda). Abril 2015 – Febrero 2016.</p>
+                  <div>
+                    <h3 className="text-lg font-bold text-oliva">Herramientas digitales</h3>
+                    <p className="text-xs text-carbon/70">Uso práctico aplicado a la organización y optimización de procesos</p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
-const Portfolio = () => {
-  const [activeVideoProject, setActiveVideoProject] = useState<any | null>(null);
-  const [activeDetails, setActiveDetails] = useState<any | null>(null);
-  const [showFunctions, setShowFunctions] = useState(false);
-
-  const projects = [
-    {
-      title: 'Frozen Food Market\n· III Edicion',
-      category: 'MICE',
-      desc: 'ENERO 2026 · SEVILLA\n\nEl Frozen Food Market es una feria profesional con concepto de mercado que conecta a todos los operadores del sector alimentario enfocados en el congelado.\n\nUn entorno diseñado para generar negocio, fomentar alianzas estratégicas y aportar visibilidad a la industria, impulsando el crecimiento y la conexión del sector del congelado en España.',
-      functions: `III Edición Frozen Food Market – Gestión integral y supervisión del evento
-
-1. Supervisión creativa e imagen del evento
-- Guiar y supervisar la creación de la nueva imagen del evento, rótulos y materiales gráficos desarrollados por el equipo de diseño.
-- Asegurar coherencia visual y calidad de todos los elementos creativos del evento.
-
-2. Supervisión de logística
-- Coordinación del espacio y montaje del evento.
-- Gestión del flujo de visitantes durante la feria.
-- Organización y supervisión del alojamiento de los participantes.
-
-3. Expositores
-- Identificación y captación de nuevos expositores para la feria.
-- Soporte y coordinación técnica de los expositores pre-evento y durante la feria.
-- Elaboración de portfolios, dossier informativos y kit creativo del expositor.
-
-4. Coordinación de actividades
-- Planificación y supervisión de todas las actividades desarrolladas para profesionales y público asistente.
-- Aseguramiento de la correcta ejecución de talleres, demostraciones y sesiones B2B.
-
-5. Marketing y comunicación
-- Gestión de comunicaciones en redes sociales y newsletters del evento.
-- Seguimiento de la página web y app de reuniones B2B.
-
-6. Experiencia del asistente
-- Supervisión de la interacción de los visitantes y aseguramiento de su satisfacción.
-
-7. Análisis post-evento y feedback
-- Elaboración de informes post-evento y memoria justificativa.
-- Recogida de encuestas y análisis de resultados.
-- Propuestas de recomendaciones y mejoras para futuras ediciones.`,
-      img: 'https://drive.google.com/thumbnail?id=1qd4FGHBC6-w4O_m3z3Cl6NuJnPiFOgGh&sz=w4000',
-      stats: null,
-      videoUrl: 'https://www.instagram.com/reel/DTxWVwljU_l/embed',
-      aspect: '9/16'
-    },
-    {
-      title: 'VI Congreso Anual\n· Entrega de Premios Anual 2025',
-      category: 'Corporativo',
-      desc: 'ENERO 2026 · SEVILLA\n\nEl VI Congreso Anual es el encuentro corporativo más importante del año, diseñado para reunir a profesionales del sector y colaboradores de la organización.\n\nEl evento combina conferencias, presentaciones y actividades de networking, y culmina con la Entrega de Premios Anual 2025, en la que se reconoce públicamente la excelencia y el talento de personas, equipos o empresas destacadas. Es un espacio que potencia la motivación, el reconocimiento y la conexión entre todos los participantes.',
-      functions: `VI Congreso Anual · Entrega de Premios 2025 – Memoria de ejecución
-
-1. Supervisión creativa e imagen del evento
-- Definición y supervisión de la línea gráfica y visual del evento, incluyendo branding de presentaciones, escenarios y materiales impresos.
-- Coordinación con el equipo de diseño para asegurar coherencia visual y calidad en todos los elementos creativos.
-- Supervisión de rótulos, señalética y ambientación de espacios.
-
-2. Supervisión de logística
-- Coordinación del montaje de salas, escenario y espacios de exposición.
-- Gestión del flujo de asistentes durante el congreso y la ceremonia de entrega de premios.
-- Coordinación de proveedores y equipos técnicos, incluyendo grupo musical y audiovisuales.
-
-3. Gestión de participantes y premiados
-- Identificación y coordinación con premiados, ponentes y colaboradores.
-- Atención técnica y soporte antes y durante el evento.
-
-4. Experiencia del socio
-- Supervisión de la experiencia integral de los socios durante el evento, asegurando su satisfacción y atención personalizada.
-- Gestión de necesidades específicas de los socios y resolución inmediata de incidencias para garantizar una experiencia fluida y positiva.
-
-5. Marketing y comunicación
-- Gestión de comunicaciones internas y externas relacionadas con el evento.
-- Seguimiento de la página web y comunicaciones digitales sobre el congreso.
-- Coordinación de newsletters e invitaciones para participantes y premiados.
-
-6. Feedback y mejora continua
-- Recogida de encuestas de satisfacción de asistentes y premiados.
-- Propuestas de recomendaciones y mejoras para futuras ediciones del Congreso Anual.`,
-      img: 'https://drive.google.com/thumbnail?id=1xGq7AKGyvlYBIw31xofTRJuDKSsmMKF0&sz=w4000',
-      stats: 'Congreso',
-      videoUrl: 'https://www.youtube.com/embed/5fb32zw8hzs',
-      aspect: '16/9'
-    },
-    {
-      title: 'Hub 360\n· Summit de innovación',
-      category: null,
-      desc: 'ABRIL 2025 · VALENCIA\n\nEl HUB 360 es un foro profesional centrado en innovación, eficiencia y movilidad, concebido como un espacio estratégico de encuentro entre empresas, patrocinadores y profesionales del sector.\n\nSe trata de un entorno dinámico que combina contenido especializado —mesas de debate, intervenciones técnicas y análisis de tendencias— con espacios de networking diseñados para fomentar la colaboración, el intercambio de conocimiento y la generación de oportunidades de negocio.\n\nEl HUB 360 actúa como plataforma de reflexión y conexión, impulsando el diálogo sobre los principales retos y avances del sector.',
-      functions: `HUB 360 – Memoria de ejecución
-
-1. Supervisión del espacio
-- Coordinación y supervisión de la adecuación del espacio HUB 360 como foro especializado en innovación, eficiencia y movilidad.
-- Control de la correcta distribución, ambientación y funcionalidad del área.
-- Supervisión del montaje y verificación del cumplimiento de los estándares definidos.
-
-2. Captación de patrocinadores
-- Identificación y captación de patrocinadores alineados con el posicionamiento del HUB 360.
-
-3. Desarrollo de base de datos y captación de socios
-- Creación y estructuración de base de datos de nuevos posibles socios en la zona.
-- Captación de nuevos socios a través de acciones vinculadas al HUB 360.
-
-4. Imagen y creatividad
-- Desarrollo y supervisión de la identidad visual del HUB 360.
-- Coordinación de materiales gráficos y elementos creativos para garantizar coherencia estética del espacio.
-
-5. Comunicación
-- Gestión de la comunicación vinculada al HUB 360 dentro del marco general del evento.
-- Coordinación de la difusión del foro y sus actividades.
-
-6. Confirmación de participantes
-- Gestión y confirmación de empresas y participantes del foro.
-- Coordinación previa para garantizar su correcta asistencia y participación en las dinámicas programadas.
-
-7. Organización de talleres dinámicos
-- Diseño y estructuración de talleres participativos.
-- Coordinación operativa y supervisión de su correcta ejecución durante el evento.`,
-      img: 'https://drive.google.com/thumbnail?id=18XvrhSBMZSeIX1FJnEowelE398kywCP_&sz=w4000',
-      stats: null,
-      videoUrl: 'https://www.youtube.com/embed/osU8TUwjl1M',
-      aspect: '16/9'
-    },
-    {
-      title: 'Frozen Connect\n· Foro de comunicación y marketing',
-      category: null,
-      desc: 'NOVIEMBRE 2025 · ZAMORA\n\nFrozen Connect es un foro especializado dirigido a equipos comerciales y de marketing, concebido como un espacio estratégico de encuentro, alineación y desarrollo profesional.\n\nEl evento combina sesiones de trabajo, workshops y dinámicas de equipo orientadas a potenciar la coordinación interna, reforzar la estrategia comercial y mejorar la comunicación entre departamentos. Un entorno participativo diseñado para impulsar la cohesión, el intercambio de ideas y la optimización de resultados.',
-      functions: `Frozen Connect – Memoria de ejecución
-
-1. Coordinación y organización
-- Coordinación general del foro y supervisión del desarrollo de la jornada.
-- Seguimiento de la planificación para asegurar que todo se ejecutara según lo previsto.
-- Coordinación con la empresa externa responsable del workshop para su correcta integración en el programa.
-
-2. Comunicación y participantes
-- Gestión completa de la comunicación del evento.
-- Redacción y envío de convocatorias.
-- Confirmación y seguimiento de asistentes antes y después de la jornada.
-
-3. Desarrollo de negocio
-- Búsqueda de nuevas empresas de la zona con objetivo de captación.
-- Generación de oportunidades de colaboración vinculadas al evento.
-
-4. Proveedores y logística
-- Búsqueda y coordinación de proveedores locales.
-- Gestión y seguimiento del catering.
-- Supervisión operativa durante el evento.
-
-5. Materiales
-- Elaboración de presentaciones y soportes utilizados durante la jornada.`,
-      img: 'https://drive.google.com/thumbnail?id=1IJLTe8-40Wg6W8vlXqC_R8vv_StwL3C1&sz=w4000',
-      stats: null,
-      videoUrl: 'https://www.youtube.com/embed/3NXMeGPVP1Y',
-      aspect: '9/16'
-    },
-    {
-      title: 'V Congreso Anual\n· Entrega de Premios Anual 2024',
-      category: 'Corporativo',
-      desc: 'ENERO 2025 · SEVILLA\n\nEl V Congreso de Frozen España fue el punto de encuentro estratégico del sector del congelado, reuniendo a fabricantes, distribuidores y operadores clave para analizar la evolución del mercado, los retos regulatorios y las oportunidades de crecimiento.\n\nDurante la jornada se abordaron tendencias de consumo, innovación en producto y sostenibilidad, consolidando el Congreso como un espacio de reflexión sectorial y visión de futuro.\n\nEl evento culminó con la Entrega de Premios Frozen España, un reconocimiento a las empresas y profesionales que destacan por su excelencia, trayectoria e impulso al desarrollo del sector, poniendo en valor el talento y la capacidad transformadora de la industria del congelado en España.',
-      img: 'https://drive.google.com/thumbnail?id=1RDrMqwVR0mIK8A4uv0YvHXKfaOSeyZwa&sz=w4000',
-      functions: `V Congreso Anual - Entrega de Premios Anual 2024 - Memoria Ejecutiva 
-
-- Apoyo a la coordinación general del Congreso en fase avanzada de organización.
-- Colaboración en la gestión y seguimiento de participantes.
-- Soporte en tareas logísticas y organizativas previas al evento.
-- Acompañamiento operativo durante la jornada para garantizar el correcto desarrollo de las actividades.
-- Apoyo al equipo en la supervisión de espacios y control básico de incidencias.`,
-      stats: 'Congreso',
-      videoUrl: 'https://www.youtube.com/embed/c94B2x1xHKo',
-      aspect: '16/9'
-    },
-    {
-      title: 'Activaciones deportivas\n· Asociacion IN',
-      category: 'Social / Deportivo',
-      desc: 'La Asociación IN reúne a deportistas con discapacidad y trabaja para dar visibilidad al deporte adaptado. Además, promueve jornadas deportivas familiares, fomentando la inclusión, la participación activa y el disfrute del deporte como herramienta de integración y desarrollo personal.',
-      img: 'https://drive.google.com/thumbnail?id=1m5q63ozk3FlMnwrHv2QNSzovf6vVcWfH&sz=w4000',
-      functions: `Asociación IN – Memoria de ejecución
-
-- Desarrollo del plan de comunicación, incluyendo difusión de actividades y seguimiento de la visibilidad del proyecto.
-- Organización y apoyo en la planificación de las jornadas deportivas, asegurando su correcta ejecución.
-- Apoyo logístico en competiciones deportivas, coordinando recursos y necesidades operativas.
-- Colaboración con otras asociaciones y proyectos, fomentando sinergias y la participación conjunta en iniciativas deportivas y sociales.`,
-      stats: 'Deportivo'
-    },
-    {
-      title: 'Leadership Forum Sevilla\n· Etypharm',
-      category: 'Corporativo',
-      desc: 'Cumbre Anual Internacional de Liderazgo Etypharm\nEnero 2025 - Sevilla',
-      img: 'https://drive.google.com/thumbnail?id=18i9vyKMOKbuMKljwYS_gLE4DTOJdgCgN&sz=w4000',
-      functions: `Etypharm Leadership Forum – Memoria de ejecución
-
-- Logística de transporte y alojamiento: Coordinación de transfers y gestión de reservas de hotel para los participantes del foro.
-- Diseño de la experiencia del evento: Planificación y supervisión de la experiencia global, asegurando una jornada coherente y de alto impacto para los asistentes.
-- Creación de materiales: Elaboración de presentaciones, dossiers y soportes gráficos necesarios para las distintas actividades.`,
-      stats: 'Forum'
-    },
-    {
-      title: 'Jornadas de Conexión\nFamilia-Escuela',
-      category: 'Educativo / Social',
-      desc: 'Las Jornadas de Conexión Familia-Escuela son espacios participativos diseñados para fomentar la colaboración entre familias y centros educativos. A través de actividades dinámicas, talleres y encuentros, se busca fortalecer la relación educativa, promover la participación activa de las familias y generar experiencias compartidas que refuercen el aprendizaje y la integración de la comunidad escolar.',
-      img: 'https://drive.google.com/thumbnail?id=19FRTE-epOTlkZkAAJQVCJ9i2cVMz7mmd&sz=w4000',
-      stats: 'Familiar'
-    }
-  ];
-
-  return (
-    <section id="portfolio" className="py-24 bg-white scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div>
-            <h2 className="text-4xl font-bold text-midnight mb-4">Portfolio de Proyectos</h2>
-            <p className="text-dark-gray/70 max-w-xl">Una selección de experiencias donde la estrategia y la creatividad se encuentran para crear impacto.</p>
-          </div>
-          <div className="flex gap-4">
-            <div className="flex items-center gap-2 text-midnight font-bold">
-              <Users size={20} className="text-coral" />
-              <span>5+ Eventos</span>
-            </div>
-            <div className="flex items-center gap-2 text-midnight font-bold">
-              <Award size={20} className="text-coral" />
-              <span>Innovación</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-midnight/5 flex flex-col"
-            >
-              <div className="relative h-56 overflow-hidden">
-                <img 
-                  src={project.img} 
-                  alt={project.title} 
-                  className={`w-full h-full transition-transform duration-700 ${
-                    project.title.includes('VI Congreso') ? 'object-cover object-bottom group-hover:scale-110' : 
-                    project.title.includes('Frozen Connect') ? 'object-cover object-top group-hover:scale-110' :
-                    project.title.includes('Hub 360') ? 'object-cover object-bottom group-hover:scale-110' :
-                    project.title.includes('V Congreso') ? 'object-cover object-top group-hover:scale-110' :
-                    project.title.includes('Familia-Escuela') ? 'object-cover object-top group-hover:scale-110' :
-                    project.title.includes('Etypharm') ? 'object-contain p-8 bg-gray-50 group-hover:scale-105' :
-                    'object-cover group-hover:scale-110'
-                  }`}
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-base font-bold text-midnight mb-4 min-h-[3.5rem] flex items-center whitespace-pre-line">
-                  {project.title}
-                </h3>
-                
-                <div className="mt-auto pt-4 border-t border-midnight/5 flex justify-between items-center">
-                  <button 
-                    onClick={() => project.videoUrl && setActiveVideoProject(project)}
-                    className={`text-[11px] font-bold uppercase tracking-wider transition-colors ${project.videoUrl ? 'text-midnight hover:text-coral' : 'text-dark-gray/30 cursor-not-allowed'}`}
-                  >
-                    VER VIDEO
-                  </button>
-                  <button 
-                    onClick={() => setActiveDetails(project)}
-                    className="text-[11px] font-bold uppercase tracking-wider text-midnight hover:text-coral transition-colors"
-                  >
-                    VER DETALLES
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Video Modal */}
-      <AnimatePresence>
-        {activeVideoProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-midnight/95 backdrop-blur-md"
-            onClick={() => setActiveVideoProject(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className={`relative w-full shadow-2xl overflow-hidden rounded-2xl ${
-                activeVideoProject.aspect === '9/16' 
-                  ? 'max-w-[400px] aspect-[9/16]' 
-                  : 'max-w-5xl aspect-[16/9]'
-              }`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                onClick={() => setActiveVideoProject(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all"
-              >
-                <X size={24} />
-              </button>
-              <iframe
-                src={activeVideoProject.videoUrl}
-                className="w-full h-full border-0"
-                allowFullScreen
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              ></iframe>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Details Modal */}
-      <AnimatePresence>
-        {activeDetails && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-midnight/90 backdrop-blur-sm"
-            onClick={() => setActiveDetails(null)}
-          >
-            <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-              className="relative w-full max-w-2xl bg-white rounded-2xl overflow-hidden shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                onClick={() => setActiveDetails(null)}
-                className="absolute top-6 right-6 z-10 w-10 h-10 bg-midnight/5 hover:bg-midnight/10 text-midnight rounded-full flex items-center justify-center transition-all"
-              >
-                <X size={24} />
-              </button>
-              
-              <div className="grid md:grid-cols-2 max-h-[90vh] overflow-y-auto">
-                <div className="h-64 md:h-auto sticky top-0">
-                  <img 
-                    src={activeDetails.img} 
-                    alt={activeDetails.title}
-                    className={`w-full h-full ${activeDetails.title.includes('Etypharm') ? 'object-contain p-12 bg-gray-50' : 'object-cover'}`}
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="p-10">
-                  <div className="mb-6">
-                    <h3 className="text-3xl font-bold text-midnight whitespace-pre-line">
-                      {activeDetails.title}
-                    </h3>
-                  </div>
-                  <div className="h-px w-12 bg-coral mb-6"></div>
-                  <div className="text-dark-gray/80 leading-relaxed whitespace-pre-line text-sm mb-8">
-                    {activeDetails.desc}
-                  </div>
-
-                  {activeDetails.functions && (
-                    <button 
-                      onClick={() => setShowFunctions(true)}
-                      className="w-full py-4 bg-midnight text-white text-[11px] font-bold uppercase tracking-widest rounded-xl hover:bg-coral transition-all flex items-center justify-center gap-2 group"
-                    >
-                      Memoria de Ejecución
-                      <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Functions Modal (Nested) */}
-      <AnimatePresence>
-        {showFunctions && activeDetails && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-midnight/95 backdrop-blur-md"
-            onClick={() => setShowFunctions(false)}
-          >
-            <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-              className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-8 border-b border-midnight/5 flex justify-between items-center bg-midnight text-white">
-                <h4 className="text-lg font-bold uppercase tracking-widest">Memoria de Ejecución</h4>
-                <button 
-                  onClick={() => setShowFunctions(false)}
-                  className="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-              <div className="p-10 max-h-[70vh] overflow-y-auto">
-                <div className="text-dark-gray/80 leading-relaxed text-sm">
-                  {activeDetails.functions.split('\n').map((line: string, i: number) => {
-                    const trimmedLine = line.trim();
-                    if (trimmedLine.startsWith('-')) {
-                      return (
-                        <div key={i} className="flex gap-3 mb-2 pl-4">
-                          <span className="text-coral font-bold mt-0.5">-</span>
-                          <span>{trimmedLine.substring(1).trim()}</span>
-                        </div>
-                      );
-                    }
-                    if (/^\d+\./.test(trimmedLine)) {
-                      return (
-                        <div key={i} className="font-bold text-midnight text-base mt-8 mb-4 border-b border-midnight/5 pb-2">
-                          {trimmedLine}
-                        </div>
-                      );
-                    }
-                    if (i === 0) {
-                      return (
-                        <div key={i} className="text-midnight font-bold text-lg mb-6">
-                          {line}
-                        </div>
-                      );
-                    }
+                <div className="space-y-3">
+                  {digitalTools.map((tool, idx) => {
+                    const IconComponent = tool.icon;
                     return (
-                      <div key={i} className={line.trim() ? "mb-4" : "h-4"}>
-                        {line}
+                      <div 
+                        key={idx}
+                        className="flex items-start gap-3 p-3 rounded-2xl bg-arena/20 border border-arena/60 hover:bg-arena/35 transition-colors"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-terracota shrink-0 shadow-xs border border-arena relative mt-0.5">
+                          <IconComponent size={15} />
+                          <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-dorado" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-bold text-oliva text-xs sm:text-sm mb-0.5">
+                            {tool.name}
+                          </p>
+                          <p className="text-xs sm:text-[0.82rem] text-carbon/85 leading-relaxed">
+                            {tool.description}
+                          </p>
+                        </div>
                       </div>
                     );
                   })}
                 </div>
+              </motion.div>
+
+              {/* Tarjeta 2: Idiomas (Información secundaria, discreta y reducida) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="bg-white px-5 py-4 rounded-2xl shadow-sm border border-arena"
+              >
+                <div className="flex items-center justify-between text-xs text-carbon/80">
+                  <div className="flex items-center gap-2">
+                    <Globe size={15} className="text-terracota" />
+                    <span className="font-bold text-oliva text-xs sm:text-sm">Inglés · B2</span>
+                  </div>
+                  <span className="text-carbon/70 text-xs">
+                    Experiencia internacional en Galway, Irlanda
+                  </span>
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Section 4: Sobre Mí ---
+
+const Story = () => {
+  const [selectedImg, setSelectedImg] = useState<number | null>(null);
+  
+  const aboutPhotos = [
+    { 
+      id: 'malawi', 
+      url: 'https://drive.google.com/thumbnail?id=1c-dK3TN7aSjLIQJcrF_srHLsmx1poQji&sz=w2000', 
+      title: 'Voluntariado en Benga, Malawi',
+      subtitle: 'Una experiencia transformadora que me enseñó a adaptarme y aportar valor con resiliencia.'
+    },
+    { 
+      id: 'event-1', 
+      url: 'https://drive.google.com/thumbnail?id=1HV1mUDTnnel6mP3YmL7vPwxtnkisgRlE&sz=w2000', 
+      title: 'Coordinación y producción de eventos',
+      subtitle: 'Cuidado al detalle en cada fase operativa y de protocolo.'
+    },
+    { 
+      id: 'event-2', 
+      url: 'https://drive.google.com/thumbnail?id=1Wldo4xGG2Tx1zhiEhbfqQRzJDjm-X07k&sz=w2000', 
+      title: 'Montaje y gestión de espacios',
+      subtitle: 'Transformando espacios en experiencias profesionales impecables.'
+    },
+    { 
+      id: 'event-3', 
+      url: 'https://drive.google.com/thumbnail?id=11NZ7vW6wvhhGK57CK_XDGsYqNx0nLonT&sz=w2000', 
+      title: 'Materiales personalizados y producción',
+      subtitle: 'Detalle y calidad en papelería, señalética y elementos impresos.'
+    },
+  ];
+
+  return (
+    <section id="sobre-mi" className="py-24 lg:py-32 bg-marfil scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          
+          {/* Columna Izquierda (aprox 48% en desktop para perfecta legibilidad en dos líneas) */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="w-full lg:w-[48%] flex flex-col justify-center"
+          >
+            <h2 className="mb-4">
+              <span className="text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-oliva block leading-tight">
+                Inquieta desde siempre.
+              </span>
+              <span className="text-xl sm:text-2xl lg:text-[1.85rem] font-bold text-terracota block mt-1.5 leading-snug sm:whitespace-nowrap">
+                Imparable cuando creo en algo.
+              </span>
+            </h2>
+
+            {/* Línea horizontal amarilla corta */}
+            <div className="w-16 h-1 bg-dorado rounded-full mb-6" />
+
+            {/* Texto con cuerpo aumentado (+1/2px) e interlineado holgado */}
+            <div className="space-y-4 text-[1.05rem] sm:text-[1.125rem] text-carbon/90 leading-[1.8] max-w-xl">
+              <p>
+                Pasar de la educación a los eventos fue <strong className="font-bold text-terracota">un cambio de vida, pero no de esencia</strong>. En RRA Consultoría descubrí lo que me mueve: convertir ideas en algo que sucede, se vive y se recuerda. Coorganizar ferias, congresos y encuentros profesionales confirmó mis ganas de seguir creciendo en ese camino.
+              </p>
+              <p>
+                Pero no todo lo que me define cabe en un currículum. Cumplir un sueño me llevó hasta Benga, Malawi, donde pasé <strong className="font-bold text-terracota">seis meses como voluntaria</strong>. Aprendí a mirar con otros ojos, a adaptarme a lo desconocido y a descubrir cuánto podía aportar. Una experiencia cuya huella sigue conmigo.
+              </p>
+              <p>
+                Cada etapa ha reforzado mi resiliencia y mi <strong className="font-bold text-terracota">capacidad para encontrar soluciones</strong>. Hoy llevo esa curiosidad, sensibilidad y determinación a cada proyecto.
+              </p>
+            </div>
+
+            {/* Cierre en desktop con formato firma personal en dos líneas */}
+            <div className="hidden lg:flex items-start gap-3.5 pt-6 mt-6 pb-1 border-t border-arena/70">
+              <span className="w-2.5 h-2.5 rounded-full bg-dorado shrink-0 mt-1.5" />
+              <div className="flex flex-col">
+                <span className="font-bold text-terracota text-base sm:text-[1.05rem] leading-tight">
+                  Me ilusionan las ideas.
+                </span>
+                <span className="font-normal text-oliva text-sm sm:text-base mt-1">
+                  Me implico para hacerlas realidad.
+                </span>
               </div>
-              <div className="p-6 bg-gray-50 border-t border-midnight/5 text-center">
-                <button 
-                  onClick={() => setShowFunctions(false)}
-                  className="text-[11px] font-bold uppercase tracking-widest text-midnight hover:text-coral transition-all"
-                >
-                  Volver a detalles
-                </button>
+            </div>
+          </motion.div>
+
+          {/* Columna Derecha: Galería Editorial Asimétrica alineada con el bloque superior y centrada */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="w-full lg:w-[52%] lg:self-start lg:pt-3"
+          >
+            {/* Versión Desktop & Tablet: Galería Asimétrica con altura calibrada */}
+            <div className="hidden sm:grid grid-cols-12 gap-3.5 lg:gap-4 h-[395px] lg:h-[435px]">
+              
+              {/* Protagonista: Malawi (aprox 2/3 de protagonismo y 7 de 12 columnas) */}
+              <div 
+                onClick={() => setSelectedImg(0)}
+                className="col-span-7 relative group cursor-pointer overflow-hidden rounded-2xl shadow-sm hover:shadow-md border border-arena/80 h-full bg-arena/20 transition-all duration-300"
+              >
+                <img 
+                  src={aboutPhotos[0].url} 
+                  alt={aboutPhotos[0].title}
+                  className="w-full h-full object-cover object-[center_68%] scale-[1.18] transition-transform duration-700 ease-out group-hover:scale-[1.26]"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-oliva/80 via-oliva/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                  <div className="text-white">
+                    <p className="text-sm font-bold text-dorado">{aboutPhotos[0].title}</p>
+                    <p className="text-xs text-white/90 leading-tight mt-1">{aboutPhotos[0].subtitle}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3 Fotos de Eventos más compactas en columna lateral */}
+              <div className="col-span-5 flex flex-col gap-3.5 lg:gap-4 h-full">
+                {aboutPhotos.slice(1).map((photo, idx) => (
+                  <div
+                    key={photo.id}
+                    onClick={() => setSelectedImg(idx + 1)}
+                    className="flex-1 relative group cursor-pointer overflow-hidden rounded-xl shadow-sm hover:shadow-md border border-arena/80 bg-arena/20 transition-all duration-300 min-h-0"
+                  >
+                    <img 
+                      src={photo.url} 
+                      alt={photo.title}
+                      className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
+                        idx === 0 ? 'object-center' : idx === 1 ? 'object-[center_30%]' : 'object-[center_40%]'
+                      }`}
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-oliva/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                      <p className="text-xs font-semibold text-white leading-snug">{photo.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Versión Móvil: Malawi protagonista arriba + 3 eventos compactos debajo */}
+            <div className="sm:hidden space-y-3">
+              {/* Malawi protagonista */}
+              <div 
+                onClick={() => setSelectedImg(0)}
+                className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-sm border border-arena/80 aspect-[4/3] bg-arena/20"
+              >
+                <img 
+                  src={aboutPhotos[0].url} 
+                  alt={aboutPhotos[0].title}
+                  className="w-full h-full object-cover object-[center_68%] scale-[1.18]"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-oliva/80 to-transparent p-3 text-white">
+                  <p className="text-xs font-bold text-dorado">{aboutPhotos[0].title}</p>
+                </div>
+              </div>
+
+              {/* 3 eventos en fila compacta */}
+              <div className="grid grid-cols-3 gap-2.5">
+                {aboutPhotos.slice(1).map((photo, idx) => (
+                  <div
+                    key={photo.id}
+                    onClick={() => setSelectedImg(idx + 1)}
+                    className="relative cursor-pointer overflow-hidden rounded-xl shadow-sm border border-arena/80 aspect-square bg-arena/20"
+                  >
+                    <img 
+                      src={photo.url} 
+                      alt={photo.title}
+                      className={`w-full h-full object-cover ${idx === 2 ? 'object-[center_40%]' : 'object-center'}`}
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Cierre en móvil (visible solo en pantallas pequeñas) */}
+            <div className="flex lg:hidden items-start gap-3 pt-5 mt-5 pb-1 border-t border-arena/70">
+              <span className="w-2.5 h-2.5 rounded-full bg-dorado shrink-0 mt-1" />
+              <div className="flex flex-col">
+                <span className="font-bold text-terracota text-sm sm:text-base leading-tight">
+                  Me ilusionan las ideas.
+                </span>
+                <span className="font-normal text-oliva text-xs sm:text-sm mt-0.5">
+                  Me implico para hacerlas realidad.
+                </span>
+              </div>
+            </div>
+
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImg !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-carbon/95 flex items-center justify-center p-4 sm:p-6"
+            onClick={() => setSelectedImg(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="max-w-4xl w-full relative bg-oliva/60 p-2 sm:p-3 rounded-2xl border border-white/10"
+              onClick={e => e.stopPropagation()}
+            >
+              <button 
+                aria-label="Cerrar imagen"
+                className="absolute -top-10 right-0 sm:-top-12 sm:-right-2 text-white hover:text-dorado transition-colors"
+                onClick={() => setSelectedImg(null)}
+              >
+                <X size={28} />
+              </button>
+              <img 
+                src={aboutPhotos[selectedImg].url} 
+                alt={aboutPhotos[selectedImg].title} 
+                className="w-full max-h-[75vh] object-contain rounded-xl"
+                referrerPolicy="no-referrer"
+              />
+              <div className="text-center mt-3 pb-1">
+                <p className="text-dorado text-base sm:text-lg font-bold">{aboutPhotos[selectedImg].title}</p>
+                <p className="text-marfil/80 text-xs sm:text-sm mt-0.5">{aboutPhotos[selectedImg].subtitle}</p>
               </div>
             </motion.div>
           </motion.div>
@@ -940,52 +916,57 @@ const Portfolio = () => {
   );
 };
 
+// --- Section 5: Contacto ---
+
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 bg-midnight scroll-mt-20">
+    <section id="contacto" className="py-24 lg:py-28 bg-oliva scroll-mt-20 text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-5xl mx-auto text-center">
-          <div className="text-white">
-            <h2 className="text-4xl font-bold mb-6">¿Hablamos de tu <span className="text-coral">próximo evento?</span></h2>
-            <p className="text-white/70 text-lg mb-12">
-              Estoy lista para aportar mi energía, organización y visión estratégica a tu equipo. ¡Conectemos!
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-5 text-white">¿Hablamos de tu <span className="text-terracota">próximo evento?</span></h2>
+            <p className="text-marfil/90 text-lg sm:text-xl font-medium mb-3 max-w-2xl mx-auto">
+              Estoy lista para aportar energía, organización y visión global a tu próximo evento.
+            </p>
+            <p className="text-dorado text-lg font-bold mb-12">
+              ¡Conectemos!
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <a href="mailto:bcvillalba@gmail.com" className="flex flex-col items-center p-8 bg-white/5 rounded-3xl group hover:bg-coral transition-all">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-coral group-hover:bg-white group-hover:text-coral transition-all mb-4">
+              <a href="mailto:bcvillalba@gmail.com" className="flex flex-col items-center p-8 bg-white/10 rounded-3xl group hover:bg-terracota transition-all border border-white/10 shadow-lg">
+                <div className="w-14 h-14 bg-black/25 rounded-2xl flex items-center justify-center text-dorado group-hover:bg-dorado group-hover:text-oliva transition-all mb-4">
                   <Mail size={28} />
                 </div>
-                <p className="text-sm text-white/50 uppercase font-bold tracking-widest mb-1">Email</p>
-                <p className="text-lg font-bold break-all">bcvillalba@gmail.com</p>
+                <p className="text-sm text-marfil/60 uppercase font-bold tracking-widest mb-1">Email</p>
+                <p className="text-lg font-bold break-all text-white">bcvillalba@gmail.com</p>
               </a>
               
-              <a href="https://www.linkedin.com/in/blancacv-eventos/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-8 bg-white/5 rounded-3xl group hover:bg-coral transition-all">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-coral group-hover:bg-white group-hover:text-coral transition-all mb-4">
+              <a href="https://www.linkedin.com/in/blancacv-eventos/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-8 bg-white/10 rounded-3xl group hover:bg-terracota transition-all border border-white/10 shadow-lg">
+                <div className="w-14 h-14 bg-black/25 rounded-2xl flex items-center justify-center text-dorado group-hover:bg-dorado group-hover:text-oliva transition-all mb-4">
                   <Linkedin size={28} />
                 </div>
-                <p className="text-sm text-white/50 uppercase font-bold tracking-widest mb-1">LinkedIn</p>
-                <p className="text-lg font-bold break-all">blancacv-eventos</p>
+                <p className="text-sm text-marfil/60 uppercase font-bold tracking-widest mb-1">LinkedIn</p>
+                <p className="text-lg font-bold break-all text-white">blancacv-eventos</p>
               </a>
               
-              <a href="https://wa.me/34611491011" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-8 bg-white/5 rounded-3xl group hover:bg-coral transition-all">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-coral group-hover:bg-white group-hover:text-coral transition-all mb-4">
+              <a href="https://wa.me/34611491011" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-8 bg-white/10 rounded-3xl group hover:bg-terracota transition-all border border-white/10 shadow-lg">
+                <div className="w-14 h-14 bg-black/25 rounded-2xl flex items-center justify-center text-dorado group-hover:bg-dorado group-hover:text-oliva transition-all mb-4">
                   <MessageCircle size={28} />
                 </div>
-                <p className="text-sm text-white/50 uppercase font-bold tracking-widest mb-1">WhatsApp</p>
-                <p className="text-lg font-bold break-all">+34 611 49 10 11</p>
+                <p className="text-sm text-marfil/60 uppercase font-bold tracking-widest mb-1">WhatsApp</p>
+                <p className="text-lg font-bold break-all text-white">+34 611 49 10 11</p>
               </a>
             </div>
 
-            <div className="pt-8 border-t border-white/10 mb-12">
-              <p className="text-sm text-white/50 uppercase font-bold tracking-widest mb-4">Descarga mi CV</p>
+            <div className="pt-8 border-t border-white/15 mb-4">
+              <p className="text-sm text-marfil/60 uppercase font-bold tracking-widest mb-4">Descarga mi CV</p>
               <a 
-                href="https://drive.google.com/uc?export=download&id=1CuTgr3-4HuGxHtJhEhoO0-KWEltQoo4Z" 
+                href="https://drive.google.com/uc?export=download&id=1-9epS3S7wwWcBIi_4ur-PB1U9dnMcvNU" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-coral text-white px-8 py-4 rounded-2xl font-bold hover:bg-coral/90 transition-all shadow-lg hover:shadow-coral/20"
+                className="inline-flex items-center gap-3 bg-terracota text-white px-8 py-4 rounded-2xl font-bold hover:bg-terracota/90 transition-all shadow-lg hover:shadow-terracota/20 group"
               >
-                <Download size={20} /> Descargar PDF
+                <Download size={20} className="text-dorado group-hover:text-white transition-colors" /> Descargar PDF
               </a>
             </div>
           </div>
@@ -995,18 +976,22 @@ const Contact = () => {
   );
 };
 
+// --- Footer Component ---
+
 const Footer = () => {
   return (
-    <footer className="py-12 bg-white border-t border-midnight/5">
+    <footer className="py-12 bg-marfil border-t border-arena">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        <p className="text-dark-gray/60 text-sm font-medium">
+        <p className="text-carbon/60 text-sm font-medium">
           © 2026 Blanca Castro. Todos los derechos reservados.
         </p>
-        <div className="flex gap-8">
-          <a href="#home" className="text-sm font-bold text-midnight hover:text-coral transition-colors">Inicio</a>
-          <a href="#story" className="text-sm font-bold text-midnight hover:text-coral transition-colors">Historia</a>
-          <a href="#cv" className="text-sm font-bold text-midnight hover:text-coral transition-colors">CV</a>
-          <a href="#portfolio" className="text-sm font-bold text-midnight hover:text-coral transition-colors">Proyectos</a>
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+          <a href="#home" className="text-sm font-bold text-oliva hover:text-terracota transition-colors">Inicio</a>
+          <a href="#experiencia" className="text-sm font-bold text-oliva hover:text-terracota transition-colors">Experiencia</a>
+          <a href="#eventos" className="text-sm font-bold text-oliva hover:text-terracota transition-colors">Eventos</a>
+          <a href="#formacion" className="text-sm font-bold text-oliva hover:text-terracota transition-colors">Formación</a>
+          <a href="#sobre-mi" className="text-sm font-bold text-oliva hover:text-terracota transition-colors">Sobre mí</a>
+          <a href="#contacto" className="text-sm font-bold text-oliva hover:text-terracota transition-colors">Contacto</a>
         </div>
       </div>
     </footer>
@@ -1017,13 +1002,14 @@ const Footer = () => {
 
 export default function App() {
   return (
-    <div className="antialiased selection:bg-coral selection:text-white">
+    <div className="antialiased selection:bg-terracota selection:text-white bg-marfil min-h-screen">
       <Navbar />
       <main>
         <Hero />
-        <Story />
-        <CV />
+        <Experience />
         <Portfolio />
+        <EducationAndSkills />
+        <Story />
         <Contact />
       </main>
       <Footer />

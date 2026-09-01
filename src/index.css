@@ -1,10 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@600;700&family=Lato:wght@400;700&family=Roboto:wght@400;500&family=Playfair+Display:ital,wght@1,700&family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@600;700&family=Lato:wght@400;700&family=Roboto:wght@400;500&family=Playfair+Display:ital,wght@1,600;1,700&family=Dancing+Script:wght@700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-midnight: #0F3D5A;
-  --color-coral: #FF6F61;
-  --color-dark-gray: #333333;
+  --color-marfil: #F6F8F6;
+  --color-oliva: #081C15;
+  --color-bosque: #1B4332;
+  --color-terracota: #2D6A4F;
+  --color-dorado: #E5B83D;
+  --color-arena: #E5EFE9;
+  --color-carbon: #081C15;
   
   --font-display: "Montserrat", "Poppins", sans-serif;
   --font-body: "Lato", "Roboto", sans-serif;
@@ -14,10 +18,10 @@
 
 @layer base {
   body {
-    @apply font-body text-dark-gray bg-white;
+    @apply font-body text-carbon bg-marfil antialiased selection:bg-terracota selection:text-white;
   }
   h1, h2, h3, h4 {
-    @apply font-display;
+    @apply font-display text-oliva;
   }
 }
 
