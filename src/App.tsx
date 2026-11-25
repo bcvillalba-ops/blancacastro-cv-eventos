@@ -104,14 +104,14 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav aria-label="Navegación principal" className="ml-auto hidden items-center justify-end gap-4 lg:flex xl:gap-6">
+        <nav aria-label="Navegación principal" className="ml-auto mr-3 hidden items-center justify-end gap-3.5 lg:flex xl:mr-4 xl:gap-5">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
                 key={link.id}
                 href={link.href}
-                className={`relative py-1.5 font-['Poppins',sans-serif] text-[12.5px] xl:text-[13px] font-normal transition-colors whitespace-nowrap ${
+                className={`relative py-1.5 font-['Poppins',sans-serif] text-[11.5px] xl:text-[12px] font-normal transition-colors whitespace-nowrap ${
                   isActive ? 'text-[#082D26]' : 'text-[#28312E] hover:text-[#082D26]'
                 }`}
               >
