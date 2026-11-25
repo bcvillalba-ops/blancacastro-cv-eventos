@@ -104,14 +104,14 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav aria-label="Navegación principal" className="hidden lg:flex items-center gap-4 xl:gap-7">
+        <nav aria-label="Navegación principal" className="ml-auto hidden items-center justify-end gap-4 lg:flex xl:gap-6">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
                 key={link.id}
                 href={link.href}
-                className={`relative py-1.5 font-['Poppins',sans-serif] text-[13px] xl:text-[15px] font-normal transition-colors whitespace-nowrap ${
+                className={`relative py-1.5 font-['Poppins',sans-serif] text-[12.5px] xl:text-[13px] font-normal transition-colors whitespace-nowrap ${
                   isActive ? 'text-[#082D26]' : 'text-[#28312E] hover:text-[#082D26]'
                 }`}
               >
@@ -187,7 +187,7 @@ const Hero = () => {
           'linear-gradient(108deg, #F7F8F5 0%, #F7F8F5 46%, #F3F5F1 62%, #EFF2ED 100%)',
       }}
     >
-      <div className="w-full max-w-[1120px] mx-auto px-6 sm:px-8">
+      <div className="w-full max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_390px] gap-10 lg:gap-x-[56px] items-center">
           {/* Left Column: Headline, Mustard Rule, Support Copy & CV Button */}
           <motion.div
