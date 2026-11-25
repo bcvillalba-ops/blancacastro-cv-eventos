@@ -88,7 +88,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full h-[70px] lg:h-[74px] bg-[#F7F8F5]/95 backdrop-blur-md border-b border-[#082D26]/[0.07]">
-      <div className="max-w-[1280px] h-full mx-auto px-6 sm:px-8 xl:px-12 flex justify-between items-center gap-4 xl:gap-6">
+      <div className="max-w-[1120px] h-full mx-auto px-6 sm:px-8 xl:px-12 flex justify-between items-center gap-4 xl:gap-6">
         <a
           href="#home"
           onClick={() => setIsOpen(false)}
@@ -104,14 +104,14 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav aria-label="Navegación principal" className="hidden lg:flex items-center gap-4 xl:gap-7">
+        <nav aria-label="Navegación principal" className="ml-auto mr-3 hidden items-center justify-end gap-3.5 lg:flex xl:mr-4 xl:gap-5">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
                 key={link.id}
                 href={link.href}
-                className={`relative py-1.5 font-['Poppins',sans-serif] text-[13px] xl:text-[15px] font-normal transition-colors whitespace-nowrap ${
+                className={`relative py-1.5 font-['Poppins',sans-serif] text-[11.5px] xl:text-[12px] font-normal transition-colors whitespace-nowrap ${
                   isActive ? 'text-[#082D26]' : 'text-[#28312E] hover:text-[#082D26]'
                 }`}
               >
@@ -181,14 +181,14 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative pt-[52px] pb-[52px] sm:pt-[60px] sm:pb-[60px] lg:pt-[75px] lg:pb-[70px] lg:min-h-[clamp(640px,74vh,700px)] lg:grid lg:items-center scroll-mt-20 overflow-x-clip"
+      className="relative pt-[52px] pb-[52px] sm:pt-[60px] sm:pb-[60px] lg:pt-[70px] lg:pb-[64px] lg:min-h-[clamp(600px,70vh,660px)] lg:grid lg:items-center scroll-mt-20 overflow-x-clip"
       style={{
         background:
           'linear-gradient(108deg, #F7F8F5 0%, #F7F8F5 46%, #F3F5F1 62%, #EFF2ED 100%)',
       }}
     >
-      <div className="w-full max-w-[1220px] mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_405px] gap-10 lg:gap-x-[80px] items-center">
+      <div className="w-full max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_390px] gap-10 lg:gap-x-[56px] items-center">
           {/* Left Column: Headline, Mustard Rule, Support Copy & CV Button */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -203,7 +203,7 @@ const Hero = () => {
                   aria-hidden="true"
                   viewBox="28 34 140 148"
                   fill="none"
-                  className="pointer-events-none select-none absolute -top-[32px] -left-[26px] w-[32px] h-[34px] sm:-top-[44px] sm:-left-[48px] sm:w-[48px] sm:h-[51px] lg:-top-[42px] lg:-left-[46px] lg:w-[46px] lg:h-[49px] xl:-top-[52px] xl:-left-[66px] xl:w-[68px] xl:h-[72px] text-[#C5A276] opacity-75"
+                  className="pointer-events-none select-none absolute -top-[34px] -left-[19px] w-[32px] h-[34px] sm:-top-[44px] sm:-left-[28px] sm:w-[48px] sm:h-[51px] lg:-top-[42px] lg:-left-[28px] lg:w-[46px] lg:h-[49px] xl:-top-[52px] xl:-left-[66px] xl:w-[68px] xl:h-[72px] text-[#C5A276] opacity-75"
                 >
                   <path
                     d="M 155 118 C 146 94 142 62 147 46 C 151 37 160 40 161 52 C 162 72 158 96 155 118 Z"
@@ -219,7 +219,7 @@ const Hero = () => {
                   />
                 </svg>
 
-                <h1 className="font-['Poppins',sans-serif] font-semibold text-[#082D26] text-[27px] sm:text-[31px] lg:text-[32px] xl:text-[35px] leading-[1.28] tracking-[-0.02em]">
+                <h1 className="font-['Poppins',sans-serif] font-semibold text-[#082D26] text-[27px] sm:text-[31px] lg:text-[30px] xl:text-[33px] leading-[1.28] tracking-[-0.02em]">
                   <span className="block lg:whitespace-nowrap mb-2">Una idea es solo el comienzo.</span>
                   <span className="block lg:whitespace-nowrap mb-2">Creatividad para darle forma.</span>
                   <span className="block lg:whitespace-nowrap">Acción para hacerla realidad.</span>
@@ -253,7 +253,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.08, ease: MOTION_EASE }}
             className="flex justify-center lg:justify-center"
           >
-            <div className="relative w-full max-w-[310px] sm:max-w-[345px] lg:max-w-[360px] xl:max-w-[375px]">
+            <div className="relative w-full max-w-[310px] sm:max-w-[345px] lg:max-w-[355px] xl:max-w-[365px]">
               {/* Elemento 1: Thin rectangular mustard line behind photo */}
               <div
                 aria-hidden="true"
@@ -361,7 +361,7 @@ const Experience = () => {
           'linear-gradient(108deg, #F7F8F5 0%, #F7F8F5 48%, #F3F5F1 72%, #EFF2ED 100%)',
       }}
     >
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 xl:px-12">
+      <div className="max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
         {/* Section Intro */}
         <div className="pb-5 mb-8 lg:mb-9 border-b border-[#082D26]/12">
           <h2 className="font-['Poppins',sans-serif] font-semibold text-[#082D26] text-[23px] sm:text-[26px] lg:text-[28px] xl:text-[30px] leading-[1.28] tracking-[-0.02em]">
@@ -390,7 +390,7 @@ const Experience = () => {
           <div className="relative z-10">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-x-6 gap-y-3 pb-4 mb-5 border-b border-[#347478]/20">
               <div>
-                <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                   Viajes Triana
                 </h3>
                 <p className="font-['Poppins',sans-serif] font-semibold text-[12.5px] sm:text-[13px] text-[#082D26] uppercase tracking-[0.13em] leading-[1.4] mt-3.5">
@@ -475,7 +475,7 @@ const Experience = () => {
 
               <div className="pb-4 mb-5 border-b border-[#347478]/20">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                     RRA Consultoría
                   </h3>
                   <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -540,7 +540,7 @@ const Experience = () => {
 
               <div className="pb-4 mb-5 border-b border-[#347478]/20">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                     Centro Infantil Patín Castilleja
                   </h3>
                   <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -624,7 +624,7 @@ const Experience = () => {
 
                         <div className="pb-4 mb-5 border-b border-[#347478]/20">
                           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                               Centro Infantil La Estrella
                             </h3>
                             <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -678,7 +678,7 @@ const Experience = () => {
 
                         <div className="pb-4 mb-5 border-b border-[#347478]/20">
                           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                               Diversos centros educativos
                             </h3>
                             <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -731,7 +731,7 @@ const Experience = () => {
 
                         <div className="pb-4 mb-5 border-b border-[#347478]/20">
                           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                               Experiencias complementarias
                             </h3>
                             <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -867,7 +867,7 @@ const EducationAndSkills = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 sm:px-8 xl:px-12">
+      <div className="relative z-10 max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
         {/* Section Intro */}
         <div className="pb-5 mb-8 lg:mb-9 border-b border-[#082D26]/12">
           <h2 className="font-['Poppins',sans-serif] font-semibold text-[#082D26] text-[23px] sm:text-[26px] lg:text-[28px] xl:text-[30px] leading-[1.28] tracking-[-0.02em]">
@@ -1111,7 +1111,7 @@ const Story = () => {
           'linear-gradient(108deg, #F7F8F5 0%, #F7F8F5 48%, #F3F5F1 72%, #EFF2ED 100%)',
       }}
     >
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 sm:px-8 xl:px-12">
+      <div className="relative z-10 max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
         {/* Section Intro */}
         <div className="pb-4 mb-5 lg:mb-6 border-b border-[#082D26]/12">
           <h2 className="font-['Poppins',sans-serif] font-semibold text-[#082D26] text-[23px] sm:text-[26px] lg:text-[28px] xl:text-[30px] leading-[1.28] tracking-[-0.02em]">
@@ -1150,17 +1150,17 @@ const Story = () => {
           className="mb-3.5 lg:mb-4"
         >
           <h3 className="mb-3">
-            <span className="font-['Poppins',sans-serif] text-[24px] sm:text-[28px] lg:text-[31px] font-semibold text-[#082D26] block leading-[1.24] tracking-[-0.015em]">
+            <span className="font-['Poppins',sans-serif] text-[21px] sm:text-[25px] lg:text-[28px] font-semibold text-[#082D26] block leading-[1.24] tracking-[-0.015em]">
               Inquieta desde siempre.
             </span>
-            <span className="font-['Playfair_Display',Georgia,serif] italic text-[22px] sm:text-[25px] lg:text-[28px] font-normal text-[#347478] block mt-1 leading-[1.28]">
+            <span className="font-['Playfair_Display',Georgia,serif] italic text-[20px] sm:text-[22px] lg:text-[25px] font-normal text-[#347478] block mt-1 leading-[1.28]">
               Imparable cuando creo en algo.
             </span>
           </h3>
 
           <div
             lang="es"
-            className="space-y-2.5 font-['Poppins',sans-serif] text-[14.5px] sm:text-[15.5px] text-[#28312E]/90 leading-[1.72] text-left sm:text-justify [text-wrap:pretty] sm:[hyphens:auto] sm:[hyphenate-limit-chars:8_3_3]"
+            className="space-y-2.5 font-['Poppins',sans-serif] text-[14.5px] sm:text-[15.5px] lg:text-[14px] text-[#28312E]/90 leading-[1.72] text-left sm:text-justify [text-wrap:pretty] sm:[hyphens:auto] sm:[hyphenate-limit-chars:8_3_3]"
           >
             <p>
               Pasar de la educación al mundo de los eventos fue{' '}
@@ -1193,7 +1193,7 @@ const Story = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, ease: MOTION_EASE }}
-            className="space-y-2.5 font-['Poppins',sans-serif] text-[14.5px] sm:text-[15.5px] text-[#28312E]/90 leading-[1.72] text-left sm:text-justify [text-wrap:pretty] sm:[hyphens:auto] sm:[hyphenate-limit-chars:8_3_3]"
+            className="space-y-2.5 font-['Poppins',sans-serif] text-[14.5px] sm:text-[15.5px] lg:text-[14px] text-[#28312E]/90 leading-[1.72] text-left sm:text-justify [text-wrap:pretty] sm:[hyphens:auto] sm:[hyphenate-limit-chars:8_3_3]"
           >
             <p>
               Al mismo tiempo, mis funciones fueron incorporando{' '}
@@ -1282,7 +1282,7 @@ const Story = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, ease: MOTION_EASE }}
-            className="space-y-2.5 font-['Poppins',sans-serif] text-[14.5px] sm:text-[15.5px] text-[#28312E]/90 leading-[1.72] text-left sm:text-justify [text-wrap:pretty] sm:[hyphens:auto] sm:[hyphenate-limit-chars:8_3_3]"
+            className="space-y-2.5 font-['Poppins',sans-serif] text-[14.5px] sm:text-[15.5px] lg:text-[14px] text-[#28312E]/90 leading-[1.72] text-left sm:text-justify [text-wrap:pretty] sm:[hyphens:auto] sm:[hyphenate-limit-chars:8_3_3]"
           >
             <p>
               El interés por aprender y afrontar nuevos retos ha sido una constante en mi recorrido. Mucho antes de esta evolución profesional, ese mismo impulso me llevó hasta Benga, Malawi, donde cumplí un sueño que tenía desde pequeña. Pasé{' '}
@@ -1393,7 +1393,7 @@ const Contact = () => {
 
       {/* Corporate Teal Full-Width Band */}
       <div className="bg-[#347478] py-14 sm:py-16 lg:py-[76px] text-[#F7F8F5]">
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-8 xl:px-12">
+        <div className="max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Column: Main Message */}
             <div className="lg:col-span-7">
@@ -1506,7 +1506,7 @@ const Footer = () => {
           'linear-gradient(108deg, #F7F8F5 0%, #F7F8F5 48%, #F3F5F1 72%, #EFF2ED 100%)',
       }}
     >
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 xl:px-12">
+      <div className="max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
           <div>
             <p className="font-['Playfair_Display',Georgia,serif] text-lg font-semibold text-[#082D26]">

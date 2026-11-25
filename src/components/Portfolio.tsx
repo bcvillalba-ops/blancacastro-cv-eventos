@@ -178,7 +178,7 @@ export const Portfolio = () => {
             'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
         }}
       />
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 sm:px-8 xl:px-12">
+      <div className="relative z-10 max-w-[1120px] mx-auto px-6 sm:px-8 xl:px-12">
         {/* Section Intro (identical to Experiencia profesional) */}
         <div className="pb-5 mb-8 lg:mb-9 border-b border-[#082D26]/12">
           <h2 className="font-['Poppins',sans-serif] font-semibold text-[#082D26] text-[23px] sm:text-[26px] lg:text-[28px] xl:text-[30px] leading-[1.28] tracking-[-0.02em]">
