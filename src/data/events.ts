@@ -55,6 +55,7 @@ export const EVENT_PROJECTS: EventProject[] = [
       style: 'bg-white/95 text-oliva border border-dorado/80'
     },
     badges: ['Evento profesional', 'Coordinación de equipo'],
+    attendeesConfirmed: '≈100 asistentes',
     coverImg: 'https://drive.google.com/thumbnail?id=19YD_9N60kWkVS6ywNXAn6xb8jyW1IxP8&sz=w4000',
     imgPositionClass: 'object-cover object-center',
     galleryImgs: [
@@ -79,6 +80,7 @@ export const EVENT_PROJECTS: EventProject[] = [
       city: 'Sevilla',
       venue: 'Torre Cruzcampo',
       format: 'Family Day profesional',
+      attendees: 'Aproximadamente 100 personas',
       organizer: 'Sevilla Congress and Convention Bureau',
       participationType: 'Coordinación de equipo, distribución de funciones y apoyo a la organización'
     },
@@ -422,6 +424,7 @@ export const EVENT_PROJECTS: EventProject[] = [
       style: 'bg-white/95 text-oliva border border-arena'
     },
     badges: ['Innovación', 'Networking'],
+    attendeesConfirmed: '≈80 asistentes',
     coverImg: 'https://drive.google.com/thumbnail?id=18XvrhSBMZSeIX1FJnEowelE398kywCP_&sz=w4000',
     imgPositionClass: 'object-cover object-bottom',
     galleryImgs: [
@@ -444,7 +447,7 @@ export const EVENT_PROJECTS: EventProject[] = [
       city: 'Valencia',
       venue: 'Aspar Circuit',
       format: 'Foro profesional y summit de innovación',
-      attendees: 'Directivos, partners y profesionales del sector',
+      attendees: 'Aproximadamente 80 personas',
       organizer: 'Asociación Frozen España / RRA Consultoría',
       participationType: 'Participación en la organización y desarrollo del espacio Hub 360'
     },

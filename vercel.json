@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "blancacastro-cv-eventos.vercel.app"
+        }
+      ],
+      "destination": "https://blancacastro-eventos-y-comunicacion.vercel.app/:path*",
+      "permanent": false
+    }
+  ]
+}

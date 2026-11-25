@@ -1,30 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@600;700&family=Lato:wght@400;700&family=Roboto:wght@400;500&family=Playfair+Display:ital,wght@1,600;1,700&family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-marfil: #F6F8F6;
-  --color-oliva: #081C15;
-  --color-bosque: #1B4332;
-  --color-terracota: #2D6A4F;
-  --color-dorado: #E5B83D;
-  --color-arena: #E5EFE9;
-  --color-carbon: #081C15;
-  
-  --font-display: "Montserrat", "Poppins", sans-serif;
-  --font-body: "Lato", "Roboto", sans-serif;
-  --font-serif: "Playfair Display", serif;
-  --font-handwritten: "Dancing Script", cursive;
+  --color-ivory: #F6F3ED;
+  --color-forest: #183C32;
+  --color-charcoal: #252A28;
+  --color-gold: #B99555;
+  --color-terracotta: #A85F43;
+  --color-paper: #FFFFFF;
+  --color-hairline: #E3DDD2;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer base {
-  body {
-    @apply font-body text-carbon bg-marfil antialiased selection:bg-terracota selection:text-white;
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
   }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-ivory);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   h1, h2, h3, h4 {
-    @apply font-display text-oliva;
+    font-family: var(--font-serif);
+    color: var(--color-forest);
+    text-wrap: balance;
+  }
+
+  button, a {
+    outline-color: var(--color-forest);
   }
 }
 
 .scroll-mt-20 {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 4.5rem;
+}
+
+@keyframes marquee-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee-drift 42s linear infinite;
+}
+
+.animate-marquee-slow:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee-slow {
+    animation: none;
+  }
 }
