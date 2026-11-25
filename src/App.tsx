@@ -390,7 +390,7 @@ const Experience = () => {
           <div className="relative z-10">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-x-6 gap-y-3 pb-4 mb-5 border-b border-[#347478]/20">
               <div>
-                <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                   Viajes Triana
                 </h3>
                 <p className="font-['Poppins',sans-serif] font-semibold text-[12.5px] sm:text-[13px] text-[#082D26] uppercase tracking-[0.13em] leading-[1.4] mt-3.5">
@@ -475,7 +475,7 @@ const Experience = () => {
 
               <div className="pb-4 mb-5 border-b border-[#347478]/20">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                     RRA Consultoría
                   </h3>
                   <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -540,7 +540,7 @@ const Experience = () => {
 
               <div className="pb-4 mb-5 border-b border-[#347478]/20">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                  <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                     Centro Infantil Patín Castilleja
                   </h3>
                   <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -624,7 +624,7 @@ const Experience = () => {
 
                         <div className="pb-4 mb-5 border-b border-[#347478]/20">
                           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                               Centro Infantil La Estrella
                             </h3>
                             <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -678,7 +678,7 @@ const Experience = () => {
 
                         <div className="pb-4 mb-5 border-b border-[#347478]/20">
                           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                               Diversos centros educativos
                             </h3>
                             <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -731,7 +731,7 @@ const Experience = () => {
 
                         <div className="pb-4 mb-5 border-b border-[#347478]/20">
                           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
-                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[18.5px] sm:text-[20px] text-[#347478] leading-[1.25]">
+                            <h3 className="font-['Poppins',sans-serif] font-semibold tracking-[-0.01em] text-[17.5px] sm:text-[19px] text-[#347478] leading-[1.25]">
                               Experiencias complementarias
                             </h3>
                             <span className="sm:ml-auto sm:text-right shrink-0 font-['Poppins',sans-serif] text-[11px] font-medium uppercase tracking-[0.11em] text-[#347478]">
@@ -1150,10 +1150,10 @@ const Story = () => {
           className="mb-3.5 lg:mb-4"
         >
           <h3 className="mb-3">
-            <span className="font-['Poppins',sans-serif] text-[24px] sm:text-[28px] lg:text-[31px] font-semibold text-[#082D26] block leading-[1.24] tracking-[-0.015em]">
+            <span className="font-['Poppins',sans-serif] text-[21px] sm:text-[25px] lg:text-[28px] font-semibold text-[#082D26] block leading-[1.24] tracking-[-0.015em]">
               Inquieta desde siempre.
             </span>
-            <span className="font-['Playfair_Display',Georgia,serif] italic text-[22px] sm:text-[25px] lg:text-[28px] font-normal text-[#347478] block mt-1 leading-[1.28]">
+            <span className="font-['Playfair_Display',Georgia,serif] italic text-[20px] sm:text-[22px] lg:text-[25px] font-normal text-[#347478] block mt-1 leading-[1.28]">
               Imparable cuando creo en algo.
             </span>
           </h3>
